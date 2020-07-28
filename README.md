@@ -13,3 +13,18 @@ If an answer to a question is incorrect, time is subtracted from the clock
 When all questions are answered or the timer reaches, the game is over
 If the game is over, user can save their initials and score
 ```
+
+
+ ## Components
+
+Timer
+Pages: start, questions, end
+local storage?
+bootstarp
+List of questions, answer options
+
+Simplify:
+
+start page
+One question - funciton
+end page
