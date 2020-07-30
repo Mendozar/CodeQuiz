@@ -1,5 +1,4 @@
-var startButton = document.querySelector("#start-button");
-var questionDiv = document.querySelector("#questions");
+//var questionDiv = document.querySelector("#questions");
 var theQuestions = [
     {
       question: "String Values must be enclosed within _____ when being assigned to variables.",
@@ -63,44 +62,66 @@ var theQuestions = [
       }
   ];
 
-startButton.addEventListener("click", function() {
-    $("#startPage").hide();
-
-
-    function buildQuize(){
-
-
-      $.each(theQuestions, function(index,item){
-            var outputHTML = [];
-            var answers = [];
-            
-            for(letter in item.answers){
-              answers.push(
-                `<label> <input type="radio" name="question" value="${letter}"> ${item.answers[letter]}</label>`
-              );  
-            };    
+//startButton.addEventListener("click", function() {
+$("#start-button").on("click", function(){  
    
-            // outputHTML.push(
-            //   `<div id="slide"> 
-            //    <div class="question"> ${item.question} </div>
-            //    <div class="answers"> ${answers.join('')} </div>
-            //    </div>`
-            //   );
+  $("#startPage").hide();
 
-          $(".container").html(
-            `<div id="slide"> 
-            <div class="question"> ${item.question} </div>
-            <div class="answers"> ${answers.join('')} </div>
-            </div>`);
+  var outputHTML = [];
+  function buildQuize(){
 
-          $("input[type='radio']").on("click", function() {
-            $("#slide").hide();
-          });
+    $.each(theQuestions, function(index,item){ 
+      var answers = [];
+            
+      for(letter in item.answers){
+        answers.push(
+          `<label> <input type="radio" id="myRadio" name="question${index}" value="${letter}"> ${item.answers[letter]}</label>`
+        );  
+      };    
+   
+      outputHTML.push(
+        `<div class="slide"> 
+        <div class="question"> ${item.question} </div>
+        <div class="answers"> ${answers.join('')} </div>
+
+        </div>`
+      );
+
+      $(".container").html(outputHTML.join(''));
+
+      // $("input[type='radio']").on("click", function(event) {
+      //  $("#slide").hide();
+      //});
+          
             
       });
 
+
     }
 buildQuize();
+
+var slides = document.querySelectorAll(".slide");
+var currentSlide = 0;
+
+function showSlide(n) {
+  slides[currentSlide].classList.remove('active-slide');
+  slides[n].classList.add('active-slide');
+  currentSlide = n;
+}
+showSlide(currentSlide);
+
+$("#next").on("click", function() {
+  showNextSlide();
+  });
+
+function showNextSlide() {
+  showSlide(currentSlide + 1);
+}
+
+
+
+
+
 
 });
 
