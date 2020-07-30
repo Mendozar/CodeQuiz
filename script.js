@@ -63,9 +63,12 @@ var theQuestions = [
   ];
 
 //startButton.addEventListener("click", function() {
+$(next).hide();
 $("#start-button").on("click", function(){  
    
   $("#startPage").hide();
+  $(next).show();
+  startTimer();
 
   var outputHTML = [];
   function buildQuize(){
@@ -83,7 +86,6 @@ $("#start-button").on("click", function(){
         `<div class="slide"> 
         <div class="question"> ${item.question} </div>
         <div class="answers"> ${answers.join('')} </div>
-
         </div>`
       );
 
@@ -115,10 +117,28 @@ $("#next").on("click", function() {
   });
 
 function showNextSlide() {
-  showSlide(currentSlide + 1);
+  
+  if (currentSlide >= outputHTML.length){
+    showResults()
+  } else {
+    showSlide(currentSlide + 1);
+  }
 }
 
+function startTimer() {
+  var timeleft = 75;
+  var downloadTimer = setInterval(function(){
+    if(timeleft <= 0){
+      clearInterval(downloadTimer);
+      $("#timer").text("Finished");
+    } else {
+      $("#timer").text(timeleft + " seconds remaining");
+      }
+      timeleft -= 1;
+  }, 1000);
 
+
+}
 
 
 
