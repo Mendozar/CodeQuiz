@@ -91,11 +91,6 @@ $("#start-button").on("click", function(){
 
       $(".container").html(outputHTML.join(''));
 
-      // $("input[type='radio']").on("click", function(event) {
-      //  $("#slide").hide();
-      //});
-          
-            
       });
 
 
@@ -112,16 +107,17 @@ function showSlide(n) {
 }
 showSlide(currentSlide);
 
+
 $("#next").on("click", function() {
   showNextSlide();
   });
 
-function showNextSlide() {
-  
-  if (currentSlide >= outputHTML.length){
-    showResults()
-  } else {
+function showNextSlide() {  
+  if (currentSlide < outputHTML.length -1 ){
     showSlide(currentSlide + 1);
+  } else {
+    $(".container").html(`<div>Results go here</div>`);
+    $(next).hide();
   }
 }
 
