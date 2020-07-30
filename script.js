@@ -130,7 +130,7 @@ function startTimer() {
   var downloadTimer = setInterval(function(){
     if(timeleft <= 0){
       clearInterval(downloadTimer);
-      $("#timer").text("Finished");
+      $("#timer").text("Timeout! You failed the quiz.");
     } else {
       $("#timer").text(timeleft + " seconds remaining");
       }
