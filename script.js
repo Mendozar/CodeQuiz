@@ -124,9 +124,9 @@ function showNextSlide() {
 function startTimer() {
   var timeleft = 75;
   var downloadTimer = setInterval(function(){
-    if(timeleft <= 0){
+    if(timeleft <= 0 ){
       clearInterval(downloadTimer);
-      $("#timer").text("Timeout! You failed the quiz.");
+      $("#timer").text("Timeout!");
     } else {
       $("#timer").text(timeleft + " seconds remaining");
       }
